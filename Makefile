@@ -1,21 +1,13 @@
-Makefile for managing work notes
+.PHONY: new-note open-note list-notes commit
 
-.PHONY: todo list-todos todo-done todo-progress filter-todos edit-task
+new-note:
+	./scripts/new-daily-note.sh
 
-todo:
-	@./scripts/add-todo.sh $(filter-out $@,$(MAKECMDGOALS))
+open-note:
+	./scripts/open-todays-note.sh
 
-list-todos:
-	@nl -w2 -s'. ' todo.md
+list-notes:
+	./scripts/list-notes.sh
 
-todo-done:
-	@./scripts/update-task-status.sh $(word 2, $(MAKECMDGOALS)) done
-
-todo-progress:
-	@./scripts/update-task-status.sh $(word 2, $(MAKECMDGOALS)) progress
-
-filter-todos:
-	@./scripts/filter-tasks.sh $(word 2, $(MAKECMDGOALS))
-
-edit-task:
-	@./scripts/edit-task.sh $(word 2, $(MAKECMDGOALS)) $(wordlist 3, 99, $(MAKECMDGOALS))
+commit:
+	./scripts/git-autocommit.sh
