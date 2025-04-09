@@ -10,4 +10,4 @@ list-notes:
 	./scripts/list-notes.sh
 
 commit:
-	./scripts/git-autocommit.sh $(msg)
+	./scripts/git-autocommit.sh "$(msg)"
