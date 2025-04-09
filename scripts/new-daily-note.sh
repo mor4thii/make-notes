@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 TODAY=$(date +"%Y-%m-%d")
 YEAR=$(date +"%Y")

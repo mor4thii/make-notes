@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
 EDITOR="${{EDITOR:-vim}}" # Default to vim if EDITOR isn't set
 TODAY=$(date +"%Y-%m-%d")
 YEAR=$(date +"%Y")
