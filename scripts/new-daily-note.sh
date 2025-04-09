@@ -3,11 +3,18 @@
 TODAY=$(date +"%Y-%m-%d")
 YEAR=$(date +"%Y")
 MONTH=$(date +"%m-%B")
-FILE="${YEAR}/${MONTH}/${TODAY}.md"
 TEMPLATE="templates/daily-note.md"
 
-mkdir -p "${YEAR}/${MONTH}"
+DATA_FOLDER=
+if [ -f config/data-folder ]; then
+    IFS= read -r DATA_FOLDER < config/data-folder
+    [[ "${DATA_FOLDER}" != */ ]] && DATA_FOLDER="${DATA_FOLDER}/"
+fi
 
+FOLDER="${DATA_FOLDER/:-}${YEAR}/${MONTH}"
+mkdir -p "${FOLDER}"
+
+FILE="${FOLDER}/${TODAY}.md"
 if [ ! -f "$FILE" ]; then
     sed "s/{{DATE}}/${TODAY}/g" "$TEMPLATE" > "$FILE"
     echo "Created note: $FILE"
