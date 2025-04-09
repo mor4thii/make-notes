@@ -2,7 +2,7 @@
 
 cd "$(dirname "$0")/.." || exit 1
 
-MESSAGE=":memo: Auto-commit on $(date '+%Y-%m-%d %H:%M:%S')"
+MESSAGE="${1:-:memo: Auto-commit on $(date '+%Y-%m-%d %H:%M:%S')}"
 git add .
 if ! git diff --cached --quiet; then
     git commit -m "$MESSAGE"
