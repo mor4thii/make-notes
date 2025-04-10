@@ -8,12 +8,12 @@ get_today_and_file() {
     local today_var=$1
     local file_var=$2
 
-    get_data_folder DATA_FOLDER
+    get_data_folder data_folder
     local year month folder today file
 
     year="$(date +"%Y")"
     month="$(date +"%m-%B")"
-    folder="${DATA_FOLDER:-}${year}/${month}"
+    folder="${data_folder:-}${year}/${month}"
     mkdir -p "$folder"
 
     today="$(date +"%Y-%m-%d")"
@@ -33,4 +33,17 @@ get_data_folder() {
     fi
 
     eval "$varname=\"\$folder\""
+}
+
+build_topic_file_by_title() {
+    local file_var=$1
+    local topic="$2"
+    local title="$3"
+
+    get_data_folder data_folder
+    folder="${data_folder:-}${topic}"
+    mkdir -p "$folder"
+
+    local file="${folder}/${title}.md"
+    eval "$file_var=\"\$file\""
 }
